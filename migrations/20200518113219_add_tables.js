@@ -5,7 +5,7 @@ exports.up = async function(knex) {
         table.string('email');
         table.text('bio');
         table.dateTime('created_at').defaultTo(knex.fn.now());
-        table.boolean('is_deleted');
+        table.boolean('is_deleted').defaultTo(false);
     })
 
     await knex.schema.createTable('categories', (table) => {
@@ -13,7 +13,7 @@ exports.up = async function(knex) {
         table.string('title');
         table.dateTime('created_at').defaultTo(knex.fn.now());
         table.integer('created_by').references('id').inTable('users');
-        table.boolean('is_deleted');
+        table.boolean('is_deleted').defaultTo(false);
     })
 
     await knex.schema.createTable('posts', (table) => {
@@ -23,7 +23,7 @@ exports.up = async function(knex) {
         table.integer('category_id').references('id').inTable('categories');
         table.dateTime('created_at').defaultTo(knex.fn.now());
         table.integer('created_by').references('id').inTable('users');
-        table.boolean('is_deleted');
+        table.boolean('is_deleted').defaultTo(false);
     })
 }
 
