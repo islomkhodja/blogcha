@@ -4,7 +4,7 @@
   "private": true,
   "scripts": {
     "start": "node ./bin/www",
-    "prettier": "npx prettier --write src/**/*.js"
+    "prettier": "npx prettier --write \"src/**/*.js\""
   },
   "husky": {
     "hooks": {
