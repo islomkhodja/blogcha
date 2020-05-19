@@ -1,2 +1,1 @@
-class PostsController {
-}
+class PostsController {}

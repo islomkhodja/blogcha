@@ -1,5 +1,5 @@
-const { EntityRepository } = require('objection-repositories');
+const { EntityRepository } = require("objection-repositories");
 
 export class UsersRepo extends EntityRepository {
-    // custom logic
+  // custom logic
 }

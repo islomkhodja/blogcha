@@ -1,11 +1,11 @@
-const { Model } = require('objection');
+const { Model } = require("objection");
 
 export class Users extends Model {
-    static get tableName() {
-        return 'users';
-    }
+  static get tableName() {
+    return "users";
+  }
 
-    static get idColumn() {
-        return 'id';
-    }
+  static get idColumn() {
+    return "id";
+  }
 }
