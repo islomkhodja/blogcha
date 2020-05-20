@@ -1,5 +1,5 @@
 const { EntityRepository } = require("objection-repositories");
 
-export class PostsRepo extends EntityRepository {
+exports.PostsRepo = class PostsRepo extends EntityRepository {
   // custom logic
-}
+};

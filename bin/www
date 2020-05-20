@@ -8,6 +8,7 @@ const app = require('../app');
 const debug = require('debug')('blogen-admin-blog:server');
 const http = require('http');
 const db = require('../src/lib/db');
+const { Model } = require('objection');
 
 /**
  * Get port from environment and store in Express.
@@ -23,7 +24,7 @@ let server;
 console.log('go querying');
 db.select(db.raw("1")).then((result) => {
   console.log(result);
-
+  Model.knex(db);
   server = http.createServer(app);
 
   server.listen(port);
@@ -96,5 +97,7 @@ function onListening() {
   const bind = typeof addr === 'string'
     ? 'pipe ' + addr
     : 'port ' + addr.port;
+
+  console.log('works! http://localhost:' + port + '/api');
   debug('Listening on ' + bind);
 }

@@ -1,4 +1,5 @@
-const { Model } = require("objection");
+const objection = require("objection");
+const Model = objection.Model;
 const { Categories } = require("../categories/categories.model");
 const { Posts } = require("../posts/posts.model");
 
@@ -29,7 +30,6 @@ exports.Users = class Users extends Model {
   static get jsonSchema() {
     return {
       type: "object",
-      required: ["name", "email", "bio"],
 
       properties: {
         id: { type: "integer" },

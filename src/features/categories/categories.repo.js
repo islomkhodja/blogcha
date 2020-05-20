@@ -1,5 +1,8 @@
 const { EntityRepository } = require("objection-repositories");
 
-export class CategoriesRepo extends EntityRepository {
+exports.CategoriesRepo = class CategoriesRepo extends EntityRepository {
   // custom logic
-}
+  getById(id) {
+    return this.model.query().findById(id);
+  }
+};
