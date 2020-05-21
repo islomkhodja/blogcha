@@ -10,8 +10,8 @@ CategoriesRepo = repositoryFactory.getCustomRepository(
   db,
   Categories
 );
-UsersRepo = repositoryFactory.getCustomRepository(UsersRepo, db, Users);
 PostsRepo = repositoryFactory.getCustomRepository(PostsRepo, db, Posts);
+UsersRepo = repositoryFactory.getCustomRepository(UsersRepo, db, Users);
 
 const repositories = {
   UsersRepo,

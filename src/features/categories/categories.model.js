@@ -1,5 +1,4 @@
 const { Users } = require("../users/users.model");
-
 const { Model } = require("objection");
 
 exports.Categories = class Categories extends Model {

@@ -22,19 +22,23 @@ class UsersControllers {
     }
   }
 
-  getUsersCategories(req, res, next) {
+  async getUsersCategories(req, res, next) {
     try {
       const id = req.params.userId;
-      this.usersService.getUsersCategories(id);
+      const usersWithCategories = await this.usersService.getUsersCategories(
+        id
+      );
+      return res.json(usersWithCategories);
     } catch (err) {
       next(err);
     }
   }
 
-  getUsersPosts(req, res, next) {
+  async getUsersPosts(req, res, next) {
     try {
       const id = req.params.userId;
-      this.usersService.getUsersPosts(id);
+      const usersWithPosts = await this.usersService.getUsersPosts(id);
+      return res.json(usersWithPosts);
     } catch (err) {
       next(err);
     }

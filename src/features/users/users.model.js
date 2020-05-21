@@ -1,7 +1,5 @@
 const objection = require("objection");
 const Model = objection.Model;
-const { Categories } = require("../categories/categories.model");
-const { Posts } = require("../posts/posts.model");
 
 exports.Users = class Users extends Model {
   id;
@@ -42,22 +40,26 @@ exports.Users = class Users extends Model {
     };
   }
 
-  static relationMappings = {
-    categories: {
-      relation: Model.HasManyRelation,
-      modelClass: Categories,
-      join: {
-        from: "users.id",
-        to: "categories.created_by",
+  static get relationMappings() {
+    const Posts = require("../posts/posts.model");
+    const Categories = require("../categories/categories.model").Categories;
+    return {
+      categories: {
+        relation: Model.HasManyRelation,
+        modelClass: Categories,
+        join: {
+          from: "users.id",
+          to: "categories.created_by",
+        },
       },
-    },
-    posts: {
-      relation: Model.HasManyRelation,
-      modelClass: Posts,
-      join: {
-        from: "users.id",
-        to: "posts.created_by",
+      posts: {
+        relation: Model.HasManyRelation,
+        modelClass: Posts,
+        join: {
+          from: "users.id",
+          to: "posts.created_by",
+        },
       },
-    },
-  };
+    };
+  }
 };

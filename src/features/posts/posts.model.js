@@ -1,7 +1,7 @@
 const { Users } = require("../users/users.model");
 const { Model } = require("objection");
 
-exports.Posts = class Posts extends Model {
+class Posts extends Model {
   id;
   title;
   body;
@@ -45,4 +45,8 @@ exports.Posts = class Posts extends Model {
       },
     },
   };
-};
+}
+
+module.exports = Posts;
+
+exports.Posts = Posts;
