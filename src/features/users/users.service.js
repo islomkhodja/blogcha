@@ -4,7 +4,7 @@ class UsersService {
   }
 
   async getAllUsers() {
-    const users = await this.UsersRepo.find();
+    const users = await this.UsersRepo.findWhereNot({ is_deleted: true });
     return users;
   }
 

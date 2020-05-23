@@ -5,7 +5,6 @@ class CategoriesControllers {
 
   async getAll(req, res, next) {
     try {
-      console.log(this);
       const categories = await this.categoriesService.getAllCategories();
       res.json(categories);
     } catch (err) {
