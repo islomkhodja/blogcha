@@ -10,6 +10,14 @@ exports.CategoriesRepo = class CategoriesRepo extends EntityRepository {
       .withGraphFetched("users(defaultSelects)");
   }
 
+  getByIdWithPosts(id) {
+    return this.model
+      .query()
+      .findById(id)
+      .whereNot("is_deleted", true)
+      .withGraphFetched("posts");
+  }
+
   updateCategory(id, user) {
     return this.model.query().updateAndFetchById(id, user);
   }

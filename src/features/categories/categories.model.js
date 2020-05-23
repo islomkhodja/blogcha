@@ -1,4 +1,3 @@
-const { Users } = require("../users/users.model");
 const { Model } = require("objection");
 
 exports.Categories = class Categories extends Model {
@@ -31,14 +30,17 @@ exports.Categories = class Categories extends Model {
     };
   }
 
-  static relationMappings = {
-    users: {
-      relation: Model.BelongsToOneRelation,
-      modelClass: Users,
-      join: {
-        from: "categories.created_by",
-        to: "users.id",
+  static get relationMappings() {
+    const { Users } = require("../users/users.model");
+    return {
+      users: {
+        relation: Model.BelongsToOneRelation,
+        modelClass: Users,
+        join: {
+          from: "categories.created_by",
+          to: "users.id",
+        },
       },
-    },
-  };
+    };
+  }
 };

@@ -4,7 +4,6 @@ const { usersController } = require("../features");
 const ctrl = { ctrl: (req, res) => res.send("no code") };
 
 const auth = require("../middlewares");
-
 router.post("/users/login", ctrl.ctrl);
 
 router.get("/users", (req, res, next) =>

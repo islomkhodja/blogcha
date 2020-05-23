@@ -16,6 +16,11 @@ class CategoriesService {
     return category;
   }
 
+  async getCategoryByIdWithPosts(id) {
+    const category = await this.CategoriesRepo.getByIdWithPosts(id);
+    return category;
+  }
+
   async editCategory(id, modelOrObject) {
     if (!id) {
       throw new Error("no id!");

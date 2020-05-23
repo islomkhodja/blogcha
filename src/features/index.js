@@ -1,6 +1,11 @@
 const db = require("../lib/db");
 const { repositoryFactory } = require("objection-repositories");
-let { Categories, CategoriesRepo } = require("./categories");
+let {
+  Categories,
+  CategoriesRepo,
+  CategoriesService,
+  CategoriesControllers,
+} = require("./categories");
 let { Users, UsersRepo } = require("./users");
 let { PostsRepo, Posts } = require("./posts");
 const { UsersController, UsersService } = require("./users");
@@ -20,16 +25,20 @@ const repositories = {
 };
 
 const usersService = new UsersService(repositories);
+const categoryService = new CategoriesService(repositories);
 
 const services = {
   usersService,
+  categoryService,
 };
 
 const usersController = new UsersController(services);
+const categoriesControllers = new CategoriesControllers(services);
 
 module.exports = {
   CategoriesRepo,
   PostsRepo,
   UsersRepo,
   usersController,
+  categoriesControllers,
 };
