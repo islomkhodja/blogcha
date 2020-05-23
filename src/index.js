@@ -2,8 +2,8 @@ const express = require("express");
 const api = express.Router();
 
 const users = require("./routes/users.route");
-const categories = require("./features/categories/categories.routes");
-const posts = require("./features/posts/posts.route");
+const categories = require("./routes/categories.routes");
+const posts = require("./routes/posts.route");
 
 api.use(users);
 api.use(categories);

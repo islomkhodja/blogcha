@@ -2,7 +2,7 @@ const express = require("express");
 const router = express.Router();
 const ctrl = { ctrl: (req, res) => res.send("no code") };
 
-const auth = require("../../middlewares");
+const auth = require("../middlewares");
 
 router.get("/categories", ctrl.ctrl);
 router.post("/categories", auth, ctrl.ctrl);

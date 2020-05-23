@@ -29,7 +29,6 @@
     "sqlite3": "^4.2.0"
   },
   "devDependencies": {
-    "Faker": "^0.7.2",
     "husky": "^4.2.5",
     "lint-staged": "^10.2.4",
     "nodemon": "^2.0.4",
