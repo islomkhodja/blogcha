@@ -15,10 +15,32 @@ exports.Categories = class Categories extends Model {
     return "id";
   }
 
+  $beforeInsert() {
+    if (this.id) {
+      throw new objection.ValidationError({
+        message: "identifier should not be defined before insert",
+        type: "MyCustomError",
+      });
+    }
+
+    if (!this.title) {
+      throw new objection.ValidationError({
+        message: "identifier should be defined before insert",
+        type: "MyCustomError",
+      });
+    }
+
+    if (!this.created_by) {
+      throw new objection.ValidationError({
+        message: "identifier should be defined before insert",
+        type: "MyCustomError",
+      });
+    }
+  }
+
   static get jsonSchema() {
     return {
       type: "object",
-      required: ["title", "created_by"],
 
       properties: {
         id: { type: "integer" },

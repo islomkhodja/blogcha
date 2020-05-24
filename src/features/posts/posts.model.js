@@ -1,5 +1,5 @@
-const { Users } = require("../users/users.model");
-const { Model } = require("objection");
+const objection = require("objection");
+const Model = objection.Model;
 
 class Posts extends Model {
   id;
@@ -18,10 +18,46 @@ class Posts extends Model {
     return "id";
   }
 
+  $beforeInsert() {
+    if (this.id) {
+      throw new objection.ValidationError({
+        message: "identifier should not be defined before insert",
+        type: "MyCustomError",
+      });
+    }
+
+    if (!this.title) {
+      throw new objection.ValidationError({
+        message: "title identifier should be defined before insert",
+        type: "MyCustomError",
+      });
+    }
+
+    if (!this.body) {
+      throw new objection.ValidationError({
+        message: "body identifier should be defined before insert",
+        type: "MyCustomError",
+      });
+    }
+
+    if (!this.category_id) {
+      throw new objection.ValidationError({
+        message: "category_id identifier should be defined before insert",
+        type: "MyCustomError",
+      });
+    }
+
+    if (!this.created_by) {
+      throw new objection.ValidationError({
+        message: "identifier should be defined before insert",
+        type: "MyCustomError",
+      });
+    }
+  }
+
   static get jsonSchema() {
     return {
       type: "object",
-      required: ["title", "body", "category_id", "created_by"],
 
       properties: {
         id: { type: "integer" },
@@ -35,16 +71,28 @@ class Posts extends Model {
     };
   }
 
-  static relationMappings = {
-    users: {
-      relation: Model.BelongsToOneRelation,
-      modelClass: Users,
-      join: {
-        from: "posts.created_by",
-        to: "users.id",
+  static get relationMappings() {
+    const { Users } = require("../users");
+    const { Categories } = require("../categories");
+    return {
+      users: {
+        relation: Model.BelongsToOneRelation,
+        modelClass: Users,
+        join: {
+          from: "posts.created_by",
+          to: "users.id",
+        },
       },
-    },
-  };
+      categories: {
+        relation: Model.BelongsToOneRelation,
+        modelClass: Categories,
+        join: {
+          from: "posts.category_id",
+          to: "categories.id",
+        },
+      },
+    };
+  }
 }
 
 module.exports = Posts;

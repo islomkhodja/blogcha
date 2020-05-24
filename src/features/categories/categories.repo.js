@@ -18,8 +18,9 @@ exports.CategoriesRepo = class CategoriesRepo extends EntityRepository {
       .withGraphFetched("posts");
   }
 
-  updateCategory(id, user) {
-    return this.model.query().updateAndFetchById(id, user);
+  updateCategory(id, category) {
+    category.id = +id;
+    return this.model.query().updateAndFetchById(id, category);
   }
 
   insertCategory(user) {

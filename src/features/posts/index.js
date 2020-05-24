@@ -1,8 +1,10 @@
 const { PostsRepo } = require("./posts.repo");
 const Posts = require("./posts.model");
-const PostsRouter = require("../../routes/posts.route");
+const { PostsService } = require("./posts.service");
+const { PostsControllers } = require("./posts.controllers");
 module.exports = {
   PostsRepo,
   Posts,
-  PostsRouter,
+  PostsService,
+  PostsControllers,
 };

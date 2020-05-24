@@ -7,7 +7,7 @@ let {
   CategoriesControllers,
 } = require("./categories");
 let { Users, UsersRepo } = require("./users");
-let { PostsRepo, Posts } = require("./posts");
+let { PostsRepo, Posts, PostsService, PostsControllers } = require("./posts");
 const { UsersController, UsersService } = require("./users");
 
 CategoriesRepo = repositoryFactory.getCustomRepository(
@@ -26,14 +26,17 @@ const repositories = {
 
 const usersService = new UsersService(repositories);
 const categoryService = new CategoriesService(repositories);
+const postService = new PostsService(repositories);
 
 const services = {
   usersService,
   categoryService,
+  postService,
 };
 
 const usersController = new UsersController(services);
 const categoriesControllers = new CategoriesControllers(services);
+const postsController = new PostsControllers(services);
 
 module.exports = {
   CategoriesRepo,
@@ -41,4 +44,5 @@ module.exports = {
   UsersRepo,
   usersController,
   categoriesControllers,
+  postsController,
 };
