@@ -4,27 +4,23 @@ class UsersService {
   }
 
   async getAllUsers() {
-    const users = await this.UsersRepo.findWhereNot({ is_deleted: true });
-    return users;
+    return await this.UsersRepo.findWhereNot({ is_deleted: true });
   }
 
   async getUserById(id) {
-    const user = await this.UsersRepo.getById(id);
-    return user;
+    return await this.UsersRepo.getById(id);
   }
 
   async getUsersCategories(id) {
     try {
-      const result = await this.UsersRepo.getWithCategories(id);
-      return result;
+      return await this.UsersRepo.getWithCategories(id);
     } catch (err) {
       throw err;
     }
   }
 
   async getUsersPosts(id) {
-    const result = await this.UsersRepo.getWithPosts(id);
-    return result;
+    return await this.UsersRepo.getWithPosts(id);
   }
 
   async editUser(id, modelOrObject) {
@@ -32,8 +28,7 @@ class UsersService {
       throw new Error("no id!");
     }
 
-    const result = await this.UsersRepo.updateUser(id, modelOrObject);
-    return result;
+    return await this.UsersRepo.updateUser(id, modelOrObject);
   }
 
   async addUser(user) {

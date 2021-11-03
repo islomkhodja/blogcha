@@ -2,7 +2,7 @@ const express = require("express");
 const router = express.Router();
 const ctrl = { ctrl: (req, res) => res.send("no code") };
 const auth = require("../middlewares");
-const { categoriesControllers } = require("../features");
+const { categoriesControllers } = require("../modules");
 const { asyncHandler } = require("../lib/async-handler");
 
 const categoriesAsyncHandler = asyncHandler(categoriesControllers);

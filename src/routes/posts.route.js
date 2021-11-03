@@ -1,7 +1,8 @@
 const express = require("express");
 const router = express.Router();
 const ctrl = { ctrl: (req, res) => res.send("no code") };
-const { postsController } = require("../features");
+const { postsController } = require("../modules");
+const { asyncHandler } = require("../lib/async-handler");
 
 const auth = require("../middlewares");
 
