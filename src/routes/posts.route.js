@@ -5,21 +5,15 @@ const { postsController } = require("../features");
 
 const auth = require("../middlewares");
 
-router.get("/posts", (req, res, next) =>
-  postsController.getAll(req, res, next)
+const postsAsyncHandler = asyncHandler(postsController);
+router.get("/posts", postsAsyncHandler(postsController.getAll));
+router.post(
+  "/posts",
+  auth,
+  postsAsyncHandler(postsController.add, postsController)
 );
-router.post("/posts", auth, (req, res, next) =>
-  postsController.add(req, res, next)
-);
-
-router.get("/posts/:postId", (req, res, next) =>
-  postsController.getOne(req, res, next)
-);
-router.put("/posts/:postId", auth, (req, res, next) =>
-  postsController.edit(req, res, next)
-);
-router.delete("/posts/:postId", auth, (req, res, next) =>
-  postsController.delete(req, res, next)
-);
+router.get("/posts/:postId", postsController.getOne);
+router.put("/posts/:postId", auth, postsController.edit);
+router.delete("/posts/:postId", auth, postsController.delete);
 
 module.exports = router;

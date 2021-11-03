@@ -4,16 +4,14 @@ class PostsService {
   }
 
   async getAllPosts() {
-    const posts = await this.PostRepo.findWhereNot(
+    return await this.PostRepo.findWhereNot(
       { is_deleted: true },
       "[categories, users(defaultSelects)]"
     );
-    return posts;
   }
 
   async getPostById(id) {
-    const post = await this.PostRepo.getById(id);
-    return post;
+    return await this.PostRepo.getById(id);
   }
 
   async editPost(id, modelOrObject) {
@@ -21,8 +19,7 @@ class PostsService {
       throw new Error("no id!");
     }
 
-    const result = await this.PostRepo.updatePost(id, modelOrObject);
-    return result;
+    return await this.PostRepo.updatePost(id, modelOrObject);
   }
 
   async addPost(user) {
