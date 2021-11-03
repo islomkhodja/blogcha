@@ -4,21 +4,18 @@ class CategoriesService {
   }
 
   async getAllCategories() {
-    const categories = await this.CategoriesRepo.findWhereNot(
+    return await this.CategoriesRepo.findWhereNot(
       { is_deleted: true },
       "users(defaultSelects)"
     );
-    return categories;
   }
 
   async getCategoryById(id) {
-    const category = await this.CategoriesRepo.getById(id);
-    return category;
+    return await this.CategoriesRepo.getById(id);
   }
 
   async getCategoryByIdWithPosts(id) {
-    const category = await this.CategoriesRepo.getByIdWithPosts(id);
-    return category;
+    return await this.CategoriesRepo.getByIdWithPosts(id);
   }
 
   async editCategory(id, modelOrObject) {
@@ -26,12 +23,11 @@ class CategoriesService {
       throw new Error("no id!");
     }
 
-    const result = await this.CategoriesRepo.updateCategory(id, modelOrObject);
-    return result;
+    return await this.CategoriesRepo.updateCategory(id, modelOrObject);
   }
 
   async addCategory(user) {
-    return this.CategoriesRepo.insertCategory(user);
+    return await this.CategoriesRepo.insertCategory(user);
   }
 
   async deleteCategory(id) {
