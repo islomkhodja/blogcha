@@ -1,4 +1,5 @@
-class CategoriesControllers {
+export class CategoriesControllers {
+  private categoriesService: any;
   constructor({ categoryService }) {
     this.categoriesService = categoryService;
   }
@@ -41,5 +42,3 @@ class CategoriesControllers {
     return res.json(deletedCategory);
   }
 }
-
-exports.CategoriesControllers = CategoriesControllers;

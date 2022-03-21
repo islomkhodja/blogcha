@@ -1,6 +1,6 @@
 const { EntityRepository } = require("objection-repositories");
 
-exports.UsersRepo = class UsersRepo extends EntityRepository {
+export class UsersRepo extends EntityRepository {
   getById(id) {
     return this.model.query().findById(id).whereNot("is_deleted", true);
   }
@@ -29,4 +29,4 @@ exports.UsersRepo = class UsersRepo extends EntityRepository {
       })
       .where("id", id);
   }
-};
+}

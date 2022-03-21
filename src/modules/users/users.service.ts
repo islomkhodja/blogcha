@@ -1,4 +1,5 @@
-class UsersService {
+export class UsersService {
+  private UsersRepo: any;
   constructor({ UsersRepo }) {
     this.UsersRepo = UsersRepo;
   }

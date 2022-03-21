@@ -1,27 +1,39 @@
-const db = require("../lib/db");
+const db = require("../lib/db.ts");
 const { repositoryFactory } = require("objection-repositories");
-let {
+import {
   Categories,
   CategoriesRepo,
   CategoriesService,
   CategoriesControllers,
-} = require("./categories");
-let { Users, UsersRepo } = require("./users");
-let { PostsRepo, Posts, PostsService, PostsControllers } = require("./posts");
-const { UsersController, UsersService } = require("./users");
+} from "./categories";
+import {
+  Users,
+  UsersRepo,
+  UsersControllers as UsersController,
+  UsersService,
+} from "./users";
+import { PostsRepo, Posts, PostsService, PostsControllers } from "./posts";
 
-CategoriesRepo = repositoryFactory.getCustomRepository(
+const customCategoriesRepo = repositoryFactory.getCustomRepository(
   CategoriesRepo,
   db,
   Categories
 );
-PostsRepo = repositoryFactory.getCustomRepository(PostsRepo, db, Posts);
-UsersRepo = repositoryFactory.getCustomRepository(UsersRepo, db, Users);
+const customPostsRepo = repositoryFactory.getCustomRepository(
+  PostsRepo,
+  db,
+  Posts
+);
+const customUsersRepo = repositoryFactory.getCustomRepository(
+  UsersRepo,
+  db,
+  Users
+);
 
 const repositories = {
-  UsersRepo,
-  CategoriesRepo,
-  PostsRepo,
+  UsersRepo: customUsersRepo,
+  CategoriesRepo: customCategoriesRepo,
+  PostsRepo: customPostsRepo,
 };
 
 const usersService = new UsersService(repositories);
@@ -38,7 +50,7 @@ const usersController = new UsersController(services);
 const categoriesControllers = new CategoriesControllers(services);
 const postsController = new PostsControllers(services);
 
-module.exports = {
+export {
   CategoriesRepo,
   PostsRepo,
   UsersRepo,

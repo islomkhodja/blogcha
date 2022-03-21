@@ -1,7 +1,6 @@
-const objection = require("objection");
-const Model = objection.Model;
+import { Model, ValidationError } from "objection";
 
-exports.Users = class Users extends Model {
+export default class Users extends Model {
   id;
   name;
   email;
@@ -27,28 +26,28 @@ exports.Users = class Users extends Model {
 
   $beforeInsert() {
     if (this.id) {
-      throw new objection.ValidationError({
+      throw new ValidationError({
         message: "identifier should not be defined before insert",
         type: "MyCustomError",
       });
     }
 
     if (!this.name) {
-      throw new objection.ValidationError({
+      throw new ValidationError({
         message: "identifier should be defined before insert",
         type: "MyCustomError",
       });
     }
 
     if (!this.email) {
-      throw new objection.ValidationError({
+      throw new ValidationError({
         message: "identifier should be defined before insert",
         type: "MyCustomError",
       });
     }
 
     if (!this.bio) {
-      throw new objection.ValidationError({
+      throw new ValidationError({
         message: "identifier should be defined before insert",
         type: "MyCustomError",
       });
@@ -92,4 +91,4 @@ exports.Users = class Users extends Model {
       },
     };
   }
-};
+}

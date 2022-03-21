@@ -1,9 +1,10 @@
-const express = require("express");
+import express from "express";
+import { categoriesControllers } from "../modules";
+
 const router = express.Router();
 const ctrl = { ctrl: (req, res) => res.send("no code") };
-const auth = require("../middlewares");
-const { categoriesControllers } = require("../modules");
-const { asyncHandler } = require("../lib/async-handler");
+import auth from "../middlewares/index";
+import { asyncHandler } from "../lib/async-handler";
 
 const categoriesAsyncHandler = asyncHandler(categoriesControllers);
 
@@ -32,4 +33,4 @@ router.get(
   categoriesAsyncHandler(categoriesControllers.getCategoryByIdWithPosts)
 );
 
-module.exports = router;
+export default router;

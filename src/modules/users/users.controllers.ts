@@ -1,4 +1,6 @@
-class UsersControllers {
+export class UsersControllers {
+  private usersService: any;
+
   constructor({ usersService }) {
     this.usersService = usersService;
   }
@@ -44,5 +46,3 @@ class UsersControllers {
     res.json(deletedUser);
   }
 }
-
-exports.UsersController = UsersControllers;

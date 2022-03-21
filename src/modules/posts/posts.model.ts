@@ -1,7 +1,7 @@
-const objection = require("objection");
-const Model = objection.Model;
-
-class Posts extends Model {
+import { Model, ValidationError } from "objection";
+import { Users } from "../users";
+import { Categories } from "../categories";
+export default class Posts extends Model {
   id;
   title;
   body;
@@ -20,35 +20,35 @@ class Posts extends Model {
 
   $beforeInsert() {
     if (this.id) {
-      throw new objection.ValidationError({
+      throw new ValidationError({
         message: "identifier should not be defined before insert",
         type: "MyCustomError",
       });
     }
 
     if (!this.title) {
-      throw new objection.ValidationError({
+      throw new ValidationError({
         message: "title identifier should be defined before insert",
         type: "MyCustomError",
       });
     }
 
     if (!this.body) {
-      throw new objection.ValidationError({
+      throw new ValidationError({
         message: "body identifier should be defined before insert",
         type: "MyCustomError",
       });
     }
 
     if (!this.category_id) {
-      throw new objection.ValidationError({
+      throw new ValidationError({
         message: "category_id identifier should be defined before insert",
         type: "MyCustomError",
       });
     }
 
     if (!this.created_by) {
-      throw new objection.ValidationError({
+      throw new ValidationError({
         message: "identifier should be defined before insert",
         type: "MyCustomError",
       });
@@ -72,8 +72,6 @@ class Posts extends Model {
   }
 
   static get relationMappings() {
-    const { Users } = require("../users");
-    const { Categories } = require("../categories");
     return {
       users: {
         relation: Model.BelongsToOneRelation,
@@ -94,7 +92,3 @@ class Posts extends Model {
     };
   }
 }
-
-module.exports = Posts;
-
-exports.Posts = Posts;

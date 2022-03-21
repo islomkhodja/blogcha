@@ -1,11 +1,12 @@
-class PostsControllers {
+export class PostsControllers {
+  private postService: any;
   constructor({ postService }) {
     this.postService = postService;
   }
 
   async getAll(req, res, next) {
     const posts = await this.postService.getAllPosts();
-    console.log(posts);
+    console.log("posts", posts);
     res.json(posts);
   }
 
@@ -33,5 +34,3 @@ class PostsControllers {
     res.json(deletedPost);
   }
 }
-
-exports.PostsControllers = PostsControllers;

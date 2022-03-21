@@ -1,6 +1,7 @@
-const { Model } = require("objection");
+import { Model, ValidationError } from "objection";
+import { Users } from "../users";
 
-exports.Categories = class Categories extends Model {
+export class Categories extends Model {
   id;
   title;
   created_at;
@@ -17,21 +18,21 @@ exports.Categories = class Categories extends Model {
 
   $beforeInsert() {
     if (this.id) {
-      throw new objection.ValidationError({
+      throw new ValidationError({
         message: "identifier should not be defined before insert",
         type: "MyCustomError",
       });
     }
 
     if (!this.title) {
-      throw new objection.ValidationError({
+      throw new ValidationError({
         message: "identifier should be defined before insert",
         type: "MyCustomError",
       });
     }
 
     if (!this.created_by) {
-      throw new objection.ValidationError({
+      throw new ValidationError({
         message: "identifier should be defined before insert",
         type: "MyCustomError",
       });
@@ -53,7 +54,6 @@ exports.Categories = class Categories extends Model {
   }
 
   static get relationMappings() {
-    const { Users } = require("../users/users.model");
     return {
       users: {
         relation: Model.BelongsToOneRelation,
@@ -65,4 +65,4 @@ exports.Categories = class Categories extends Model {
       },
     };
   }
-};
+}

@@ -1,4 +1,5 @@
-class CategoriesService {
+export class CategoriesService {
+  private CategoriesRepo: any;
   constructor({ CategoriesRepo }) {
     this.CategoriesRepo = CategoriesRepo;
   }
@@ -35,5 +36,3 @@ class CategoriesService {
     return { id, is_deleted: true };
   }
 }
-
-exports.CategoriesService = CategoriesService;
