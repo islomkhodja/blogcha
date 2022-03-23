@@ -6,7 +6,6 @@ export class PostsControllers {
 
   async getAll(req, res, next) {
     const posts = await this.postService.getAllPosts();
-    console.log("posts", posts);
     res.json(posts);
   }
 
