@@ -1,2 +1,1 @@
-# blogen-admin-blog
-API for blogen-admin-angular repository
+# blogcha [WORK IN PROGRESS]
