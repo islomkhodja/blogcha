@@ -1,4 +1,4 @@
-const { EntityRepository } = require("objection-repositories");
+import { EntityRepository } from "../../lib/repository";
 
 export class UsersRepo extends EntityRepository {
   getById(id) {

@@ -1,6 +1,8 @@
+import { UsersRepo } from "./users.repo";
+
 export class UsersService {
   private UsersRepo: any;
-  constructor({ UsersRepo }) {
+  constructor({ UsersRepo }: { UsersRepo: UsersRepo }) {
     this.UsersRepo = UsersRepo;
   }
 

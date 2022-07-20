@@ -1,7 +1,6 @@
 import { asyncWrapperForController } from "../lib/async-wrapper-for-controller";
 
 const db = require("../lib/db.ts");
-const { repositoryFactory } = require("objection-repositories");
 import {
   Categories,
   CategoriesRepo,
@@ -16,6 +15,7 @@ import {
   UsersControllers,
 } from "./users";
 import { PostsRepo, Posts, PostsService, PostsControllers } from "./posts";
+import { repositoryFactory } from "../lib/repository";
 
 const customCategoriesRepo = repositoryFactory.getCustomRepository(
   CategoriesRepo,
