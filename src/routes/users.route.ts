@@ -1,14 +1,10 @@
 import express from "express";
 
 const router = express.Router();
-import { asyncWrapperForController } from "../lib/async-wrapper-for-controller";
-import { usersController } from "../modules";
+import { usersAsyncController } from "../modules";
 
 const ctrl = { ctrl: (req, res) => res.send("no code") };
 import auth from "../middlewares/index";
-import { UsersControllers } from "../modules/users";
-
-const usersAsyncController = asyncWrapperForController<UsersControllers>(usersController);
 
 router.post("/users/login", ctrl.ctrl);
 

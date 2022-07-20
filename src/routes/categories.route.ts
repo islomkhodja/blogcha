@@ -1,15 +1,9 @@
 import express from "express";
-import { categoriesControllers } from "../modules";
+import { categoriesAsyncController } from "../modules";
 
 const router = express.Router();
 const ctrl = { ctrl: (req, res) => res.send("no code") };
 import auth from "../middlewares/index";
-import { asyncWrapperForController } from "../lib/async-wrapper-for-controller";
-import { CategoriesControllers } from "../modules/categories";
-
-const categoriesAsyncController = asyncWrapperForController<CategoriesControllers>(
-  categoriesControllers
-);
 
 router.get("/categories", categoriesAsyncController.getAll);
 router.post("/categories", auth, categoriesAsyncController.add);

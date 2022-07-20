@@ -1,3 +1,5 @@
+import { asyncWrapperForController } from "../lib/async-wrapper-for-controller";
+
 const db = require("../lib/db.ts");
 const { repositoryFactory } = require("objection-repositories");
 import {
@@ -11,6 +13,7 @@ import {
   UsersRepo,
   UsersControllers as UsersController,
   UsersService,
+  UsersControllers,
 } from "./users";
 import { PostsRepo, Posts, PostsService, PostsControllers } from "./posts";
 
@@ -50,6 +53,16 @@ const usersController = new UsersController(services);
 const categoriesControllers = new CategoriesControllers(services);
 const postsController = new PostsControllers(services);
 
+const usersAsyncController = asyncWrapperForController<UsersControllers>(
+  usersController
+);
+const categoriesAsyncController = asyncWrapperForController<
+  CategoriesControllers
+>(categoriesControllers);
+const postsAsyncController = asyncWrapperForController<PostsControllers>(
+  postsController
+);
+
 export {
   CategoriesRepo,
   PostsRepo,
@@ -57,4 +70,7 @@ export {
   usersController,
   categoriesControllers,
   postsController,
+  usersAsyncController,
+  categoriesAsyncController,
+  postsAsyncController,
 };
