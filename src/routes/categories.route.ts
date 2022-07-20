@@ -4,33 +4,25 @@ import { categoriesControllers } from "../modules";
 const router = express.Router();
 const ctrl = { ctrl: (req, res) => res.send("no code") };
 import auth from "../middlewares/index";
-import { asyncHandler } from "../lib/async-handler";
+import { asyncWrapperForController } from "../lib/async-wrapper-for-controller";
+import { CategoriesControllers } from "../modules/categories";
 
-const categoriesAsyncHandler = asyncHandler(categoriesControllers);
+const categoriesAsyncController = asyncWrapperForController<CategoriesControllers>(
+  categoriesControllers
+);
 
-router.get("/categories", categoriesAsyncHandler(categoriesControllers.getAll));
-router.post(
-  "/categories",
-  auth,
-  categoriesAsyncHandler(categoriesControllers.add)
-);
-router.get(
-  "/categories/:categoryId",
-  categoriesAsyncHandler(categoriesControllers.getOne)
-);
-router.put(
-  "/categories/:categoryId",
-  auth,
-  categoriesAsyncHandler(categoriesControllers.edit)
-);
+router.get("/categories", categoriesAsyncController.getAll);
+router.post("/categories", auth, categoriesAsyncController.add);
+router.get("/categories/:categoryId", categoriesAsyncController.getOne);
+router.put("/categories/:categoryId", auth, categoriesAsyncController.edit);
 router.delete(
   "/categories/:categoryId",
   auth,
-  categoriesAsyncHandler(categoriesControllers.delete)
+  categoriesAsyncController.delete
 );
 router.get(
   "/categories/:categoryId/posts",
-  categoriesAsyncHandler(categoriesControllers.getCategoryByIdWithPosts)
+  categoriesAsyncController.getCategoryByIdWithPosts
 );
 
 export default router;

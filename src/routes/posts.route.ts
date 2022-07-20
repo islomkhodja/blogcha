@@ -1,15 +1,18 @@
 import express from "express";
 import { postsController } from "../modules";
+
 const router = express.Router();
-import { asyncHandler } from "../lib/async-handler";
+import { asyncWrapperForController } from "../lib/async-wrapper-for-controller";
 
 import auth from "../middlewares/index";
+import { PostsControllers } from "../modules/posts";
 
-const postsAsyncHandler = asyncHandler(postsController);
-router.get("/posts", postsAsyncHandler(postsController.getAll));
-router.post("/posts", auth, postsAsyncHandler(postsController.add));
-router.get("/posts/:postId", postsController.getOne);
-router.put("/posts/:postId", auth, postsController.edit);
-router.delete("/posts/:postId", auth, postsController.delete);
+const postAsyncController = asyncWrapperForController<PostsControllers>(postsController);
+
+router.get("/posts", postAsyncController.getAll);
+router.post("/posts", auth, postAsyncController.add);
+router.get("/posts/:postId", postAsyncController.getOne);
+router.put("/posts/:postId", auth, postAsyncController.edit);
+router.delete("/posts/:postId", auth, postAsyncController.delete);
 
 export default router;
