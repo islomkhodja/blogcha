@@ -7,7 +7,6 @@ export const asyncWrapperForController = <T>(contextController): T => {
         method !== "constructor"
     )
     .forEach((handler) => {
-      console.log(handler);
       newController[handler] = async function (req, res, next) {
         try {
           const boundHandler = contextController[handler].bind(
