@@ -4,20 +4,29 @@ export const asyncWrapperForController = <T>(contextController): T => {
     .filter(
       (method) =>
         typeof contextController[method] === "function" &&
-        method !== "constructor"
+        !["constructor"].includes(method)
     )
     .forEach((handler) => {
-      newController[handler] = async function (req, res, next) {
-        try {
-          const boundHandler = contextController[handler].bind(
-            contextController
-          );
-          return await boundHandler(req, res, next);
-        } catch (err) {
-          next(err);
-        }
-      };
+      if (handler === "routerSettings") {
+        newController[handler] = contextController[handler];
+        return;
+      }
+      newController[handler] = tryCatchedHandler(
+        contextController[handler],
+        contextController
+      );
     });
 
   return newController;
+};
+
+export const tryCatchedHandler = (handler, controller) => {
+  return async function (req, res, next) {
+    try {
+      const boundHandler = handler.bind(controller);
+      return await boundHandler(req, res, next);
+    } catch (err) {
+      next(err);
+    }
+  };
 };
