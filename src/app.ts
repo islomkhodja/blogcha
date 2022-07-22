@@ -39,15 +39,17 @@ app.use(function (req, res, next) {
 });
 
 // error handler
-app.use(function (err, req, res, next) {
+app.use(function (err: Error | any, req, res, next) {
   console.log("default error handler", err);
   // set locals, only providing error in development
   res.locals.message = err.message;
-  res.locals.error = req.app.get("env") === "development" ? err : {};
+  res.locals.error = process.env.NODE_ENV === "development" ? err : {};
+
+  console.log("locals env", res.locals.error);
 
   // render the error page
   res.status(err.status || 500);
-  res.send(err);
+  res.json({ message: err.message, stack: err.stack, name: err.name });
 });
 
 export default app;
