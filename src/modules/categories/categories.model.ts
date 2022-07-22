@@ -1,5 +1,6 @@
 import { Model, ValidationError } from "objection";
 import { Users } from "../users";
+import { Posts } from "../posts";
 
 export class Categories extends Model {
   id;
@@ -61,6 +62,14 @@ export class Categories extends Model {
         join: {
           from: "categories.created_by",
           to: "users.id",
+        },
+      },
+      posts: {
+        relation: Model.HasManyRelation,
+        modelClass: Posts,
+        join: {
+          from: "categories.id",
+          to: "posts.category_id",
         },
       },
     };
