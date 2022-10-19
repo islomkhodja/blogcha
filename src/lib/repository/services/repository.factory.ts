@@ -1,5 +1,5 @@
 const _ = require("lodash");
-const validate = require("validation-utils").validationHelper;
+import { validateInheritsFrom } from 'validation-utils'
 
 const EntityRepository = require("./entity.repository");
 
@@ -35,7 +35,7 @@ const memoizedGetCustomRepository = _.memoize(
 );
 
 function getCustomRepository(RepositoryClass, knex, entityModel) {
-  validate.inheritsFrom(
+  validateInheritsFrom(
     RepositoryClass,
     EntityRepository,
     "Custom repository class must inherit from EntityRepository"

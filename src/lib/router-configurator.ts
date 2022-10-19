@@ -1,9 +1,5 @@
-import {
-  AppController,
-  ApplicationRouterSettings,
-  RouteHandler,
-} from "../modules/categories/categories.controllers";
 import { Router } from "express";
+import {AppController, RouteHandler} from "./base-controller-config";
 
 const setToRoute = <T>(route, router, handlerObject, controller: T) => {
   const { method, beforeMiddleware, afterMiddleware, handler } = handlerObject;

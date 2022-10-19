@@ -1,4 +1,4 @@
-export class UsersControllers {
+export class UsersApiControllers {
   private usersService: any;
 
   constructor({ usersService }) {

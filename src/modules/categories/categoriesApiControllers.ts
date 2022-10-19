@@ -8,7 +8,7 @@ import {
   ApplicationRouterSettings,
 } from "../../lib/base-controller-config";
 
-export class CategoriesControllers implements AppController {
+export class CategoriesApiControllers implements AppController {
   private categoriesService: CategoriesService;
   private postService: PostsService;
 

@@ -1,4 +1,4 @@
-export class PostsControllers {
+export class PostsApiControllers {
   private postService: any;
   constructor({ postService }) {
     this.postService = postService;

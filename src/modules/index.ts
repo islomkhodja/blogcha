@@ -5,16 +5,15 @@ import {
   Categories,
   CategoriesRepo,
   CategoriesService,
-  CategoriesControllers,
+  CategoriesApiControllers,
 } from "./categories";
 import {
   Users,
   UsersRepo,
-  UsersControllers as UsersController,
+  UsersApiControllers,
   UsersService,
-  UsersControllers,
 } from "./users";
-import { PostsRepo, Posts, PostsService, PostsControllers } from "./posts";
+import { PostsRepo, Posts, PostsService, PostsApiControllers } from "./posts";
 import { repositoryFactory } from "../lib/repository";
 
 const customCategoriesRepo = repositoryFactory.getCustomRepository(
@@ -49,28 +48,28 @@ const services = {
   postService,
 };
 
-const usersController = new UsersController(services);
-const categoriesControllers = new CategoriesControllers(services);
-const postsController = new PostsControllers(services);
+const usersApiController = new UsersApiControllers(services);
+const categoriesApiControllers = new CategoriesApiControllers(services);
+const postsApiController = new PostsApiControllers(services);
 
-const usersAsyncController = asyncWrapperForController<UsersControllers>(
-  usersController
+const usersApiAsyncController = asyncWrapperForController<UsersApiControllers>(
+  usersApiController
 );
-const categoriesAsyncController = asyncWrapperForController<
-  CategoriesControllers
->(categoriesControllers);
-const postsAsyncController = asyncWrapperForController<PostsControllers>(
-  postsController
+const categoriesApiAsyncController = asyncWrapperForController<
+  CategoriesApiControllers
+>(categoriesApiControllers);
+const postsApiAsyncController = asyncWrapperForController<PostsApiControllers>(
+  postsApiController
 );
 
 export {
   CategoriesRepo,
   PostsRepo,
   UsersRepo,
-  usersController,
-  categoriesControllers,
-  postsController,
-  usersAsyncController,
-  categoriesAsyncController,
-  postsAsyncController,
+  usersApiController,
+  categoriesApiControllers,
+  postsApiController,
+  usersApiAsyncController,
+  categoriesApiAsyncController,
+  postsApiAsyncController,
 };

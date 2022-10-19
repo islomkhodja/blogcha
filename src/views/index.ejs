@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="preload" href="400.woff2" as="font" type="font/woff2" crossorigin="">
+    <link rel="preload" href="700.woff2" as="font" type="font/woff2" crossorigin="">
+    <title>Islom Khamid</title>
+    <meta name="description" content="">
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="Главная">
+    <meta property="og:description" content="">
+    <link rel="icon" type="image/png" href="/assets/images/favicon.png?v=07824d33e2">
+    <link rel="stylesheet" href="/index.css?v=df67191384">
+    <link rel="alternate" hreflang="en" href="https://andreyromanov.com">
+    <script defer="" src="/assets/scripts/focus-visible.min.js"></script>
+</head>
+<body>
+<div class="page">
+    <header class="header header_home page__header">
+        <div class="header__title">
+            <a class="link link_unstyled" href="/">Islomkhuja Khamidullakhujaev</a> <sup><a class="caps" href="https://andreyromanov.com">EN</a></sup>
+        </div>
+        <nav>
+            <ul class="navigation">
+                <li class="navigation__item"><a class="link link_active" href="/">Asosiy</a></li>
+                <li class="navigation__item"><a class="link" href="/writing/">Postlar</a></li>
+                <li class="navigation__item"><a class="link" href="/notes/">Qaydlar</a></li>
+                <li class="navigation__item"><a class="link" href="/library/">Kutubxona</a></li>
+            </ul>
+        </nav>
+    </header>
+    <main class="page__content">
+        <div class="page-home"><h1 class="visuallyhidden">Андрей Романов</h1>
+            <div class="page-home__main content">
+                <section><h2 class="visuallyhidden">Обо мне</h2>
+                    <p><img alt="Личное фото" sizes="(max-width: 1000px) 100vw, 1000px"
+                            srcset="400.jpg 400w, 600.jpg 600w, 800.jpg 800w, 1000.jpg 1000w"
+                            src="1000.jpg" height="678" width="1000"></p>
+                    <p>Salom! Men Toshkentda yashayman. <!--<span class="flag flag_omsk"></span>-->
+                        <s>Technecy</s> → <s>Freelance</s> → <s>Mbank</s> → Unicon-soft'da dasturchi bo'lib ishlayman. Dizayn va musiqani yaxshi ko'raman.</p>
+                    <p>С 2014 года веду <a href="https://forwebdev.ru">For Web</a>, одно из крупнейших русскоязычных
+                        <span class="nobr">фронтенд-сообществ</span> в <a href="https://vk.com/forwebdev"><span
+                                    class="caps">ВК</span></a>, <a href="https://t.me/forwebdev">Телеграме</a> и <a
+                                href="https://twitter.com/forwebdev">Твитере</a>.</p>
+                    <p class="paragraph">Веду <a href="/notes">блог</a> и <a href="https://t.me/andrew_r_notes">канал в
+                            Телеграме</a>. Писал и переводил статьи на <a href="http://frontender.info/">Frontender
+                            Magazine</a>, <a href="https://habrahabr.ru/users/andrew-r">Хабрахабре</a>, <a
+                                href="https://forwebdev.ru/">Форвебе</a> и <a href="https://hexlet.io/blog">Хекслете</a>.
+                    </p></section>
+            </div>
+            <aside class="page-home__aside content">
+                <section><h2>Instrumentlar</h2>
+                    <p>Hayotimni osonlashtiruvchilar: <a href="https://code.visualstudio.com">VS Code</a>, <a
+                                href="https://sw.kovidgoyal.net/kitty">kitty</a>, <a
+                                href="https://prettier.io">Prettier</a>, <a href="https://amplifr.com">Amplifr</a>, <a
+                                href="https://culturedcode.com/things">Things</a>, <a href="https://www.notion.so">Notion</a>,
+                        <a href="https://mullvad.net">Mullvad VPN</a>, <a href="https://keepassxc.org">KeePassXC</a>, <a
+                                href="https://www.openoffice.org">OpenOffice</a>, <a
+                                href="https://www.youneedabudget.com">YNAB</a>, <a href="https://git-fork.com">Fork</a>,
+                        <a href="http://fastmail.com">Fastmail</a>, <a href="https://www.cockos.com/licecap">LICEcap</a>,
+                        <a href="https://ranchero.com/netnewswire">NetNewsWire</a>, <a href="https://workflowy.com">Workflowy</a>
+                    </p></section>
+                <section><h2>Taymlayn</h2>
+                    <p>Umr davomiyligi vizualizatsiyasi. Har bir katak bir hafta demakdir. Har bir qator 52 hafta yoki 1 yildir. O'tgan haftalar avtomatik ravishda ajratib ko'rsatiladi.</p>
+                    <div data-timeline-target="" class="timeline"></div>
+                    <noscript>Таймлан не работает без JavaScript</noscript>
+                    <script>(function () {
+                        'use strict';
+                        var birthDate = new Date('1997-11-04');
+                        var now = new Date();
+                        var weeksInYear = 52;
+                        var week = 1000 * 60 * 60 * 24 * 7;
+                        var passedWeeks = (now - birthDate) / week;
+
+                        function renderWeek(number) {
+                          var node = document.createElement('div');
+
+                          node.classList.add('timeline__week');
+
+                          if (number <= passedWeeks) {
+                            node.classList.add('timeline__week_passed');
+                          }
+
+                          return node;
+                        }
+
+                        function renderTimeline(targetNode) {
+                          for (var week = 1; week <= weeksInYear * 80; week++) {
+                            targetNode.appendChild(renderWeek(week));
+                          }
+                        }
+
+                        window.addEventListener('load', function () {
+                          renderTimeline(document.querySelector('[data-timeline-target]'));
+                        });
+                      })();</script>
+                </section>
+            </aside>
+        </div>
+    </main>
+    <footer class="footer page__footer">
+        <ul class="navigation">
+            <li class="navigation__item"><a rel="me" href="https://github.com/andrew--r">GitHub</a></li>
+            <li class="navigation__item"><a rel="me" href="https://twitter.com/andrew__romanov">Twitter</a></li>
+            <li class="navigation__item"><a rel="me" href="https://t.me/andrew_r">Telegram</a></li>
+        </ul>
+        <p>Этот сайт не следит за вами и не собирает никакие данные.</p></footer>
+</div>
+<style>
+    /*@font-face {
+        font-family: 'Fira Code';
+        src: local('Fira Code'),
+        url('/assets/fonts/fira-code/regular.woff2'),
+        url('/assets/fonts/fira-code/regular.woff');
+        font-weight: 400;
+        font-display: swap;
+    }*/
+</style>
+</body>
+</html>

@@ -1,12 +1,12 @@
 import express, { Router } from "express";
-import { categoriesControllers } from "../modules";
+import { categoriesApiControllers } from "../modules";
 
 const router = express.Router();
 import { routerConfigurationForController } from "../lib/router-configurator";
-import { CategoriesControllers } from "../modules/categories";
+import { CategoriesApiControllers } from "../modules/categories";
 
-routerConfigurationForController<CategoriesControllers>(
-  categoriesControllers,
+routerConfigurationForController<CategoriesApiControllers>(
+  categoriesApiControllers,
   router
 );
 

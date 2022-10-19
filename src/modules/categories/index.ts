@@ -1,6 +1,6 @@
 import { CategoriesRepo } from "./categories.repo";
 import { Categories } from "./categories.model";
-import { CategoriesControllers } from "./categories.controllers";
+import { CategoriesApiControllers } from "./categoriesApiControllers";
 import { CategoriesService } from "./categories.service";
 
-export { CategoriesRepo, Categories, CategoriesControllers, CategoriesService };
+export { CategoriesRepo, Categories, CategoriesApiControllers, CategoriesService };

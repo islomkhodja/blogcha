@@ -4,7 +4,8 @@ const path = require("path");
 const cookieParser = require("cookie-parser");
 const methodOverride = require("method-override");
 const logger = require("morgan");
-import api from "./routes";
+import api from "./routes-api";
+import viewRouter from "./routes-view";
 
 const app = express();
 
@@ -28,10 +29,12 @@ app.use(express.urlencoded({ extended: false }));
 app.use(methodOverride("X-HTTP-Method-Override"));
 app.use(cookieParser());
 
-app.use(express.static(path.join(__dirname, "public")));
+app.use(express.static(path.join("public")));
 app.use(allowCrossDomain);
-
 app.use("/api", api);
+app.use('/', viewRouter);
+app.set('views', path.resolve(__dirname, 'views'))
+app.set('view engine', 'ejs');
 
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {

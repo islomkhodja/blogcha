@@ -2,13 +2,13 @@ import { Model, ValidationError } from "objection";
 import { Users } from "../users";
 import { Categories } from "../categories";
 export default class Posts extends Model {
-  id;
-  title;
-  body;
-  category_id;
-  created_at;
-  created_by;
-  is_deleted;
+  id: string;
+  title: string;
+  body: string;
+  category_id: string;
+  created_at: Date;
+  created_by: string;
+  is_deleted: boolean;
 
   static get tableName() {
     return "posts";

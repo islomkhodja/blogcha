@@ -1,7 +1,7 @@
 import { NotFoundError } from "../errors/NotFoundError";
 
 const _ = require("lodash");
-const validationUtils = require("validation-utils").validationHelper;
+import { validateNotNil, validateBooleanTrue } from 'validation-utils'
 
 class EntityRepository {
   private knex: any;
@@ -9,8 +9,8 @@ class EntityRepository {
   private idColumn: any;
 
   constructor(knex, model) {
-    validationUtils.notNil(knex, "Knex instance is mandatory");
-    validationUtils.notNil(model, "Model is mandatory");
+    validateNotNil(knex, "Knex instance is mandatory");
+    validateNotNil(model, "Model is mandatory");
     _validateIsModel(model);
 
     this.knex = knex;
@@ -141,7 +141,7 @@ function _validateIsModel(model) {
   while (parentClass.name !== "Model" && parentClass.name !== "") {
     parentClass = Object.getPrototypeOf(parentClass);
   }
-  validationUtils.booleanTrue(
+  validateBooleanTrue(
     parentClass.name === "Model",
     "Parameter is not an Objection.js model"
   );
